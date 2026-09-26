@@ -1,0 +1,37 @@
+{
+  "name": "posthog-mcp",
+  "version": "1.0.0",
+  "description": "PostHog-flavored MCP server agents can drive — mock by default, optional live API",
+  "type": "module",
+  "bin": {
+    "posthog-mcp": "./dist/src/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "dev": "tsx src/index.ts",
+    "eval": "tsx eval/harness.ts",
+    "test": "tsx eval/harness.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "mcp",
+    "posthog",
+    "agents",
+    "model-context-protocol"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/client": "^2.1.0",
+    "@modelcontextprotocol/server": "^2.1.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0 || ^26.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
