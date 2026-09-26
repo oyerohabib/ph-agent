@@ -1,0 +1,38 @@
+# posthog-mcp
+
+> MCP server: PostHog capture / identify / feature flags for AI agents. Mock by default.
+
+## Summary
+
+posthog-mcp exposes four Model Context Protocol tools so agents can emit analytics and read feature flags without a browser. Default transport is stdio. Default backend is an in-memory mock; optional live PostHog via env.
+
+## Tools
+
+- capture_event: Capture analytics event (distinctId, event, properties?)
+- identify_user: Identify person with properties (distinctId, properties)
+- get_feature_flag: Evaluate flag (distinctId, flagKey, personProperties?)
+- list_feature_flags: List known flags (no args)
+
+## Modes
+
+- mock (default): no credentials; seeded flags new-onboarding, beta-insights, pricing-experiment
+- live: POSTHOG_MODE=live + POSTHOG_API_KEY (+ optional POSTHOG_PERSONAL_API_KEY, POSTHOG_HOST)
+
+## Run
+
+```
+npm install
+npm run eval
+npm run dev
+```
+
+## Docs
+
+- AGENT.md — agent operating manual for these tools
+- README.md — human setup and MCP host config
+
+## Constraints
+
+- No auth server, no database, no HTTP MCP endpoint in this slice
+- stdout is JSON-RPC only; use stderr for logs
+- Keep tool surface ≤ 5 tools
